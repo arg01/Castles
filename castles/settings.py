@@ -26,7 +26,7 @@ SECRET_KEY = '-ecq_$$h)1v6ffs-6hw%9nt0b#_#7pwqzzutvjfthc-qnfo(vp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['riddlercastle.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -125,3 +125,4 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
