@@ -13,9 +13,12 @@ def index(request):
         'index.html',
     )
 
+
 class ResultsView(tables.Table):
     class Meta:
         model = players
+        attrs = {"name":"wins":"losses":"ties"}
+
 
 def players_list(request):
     queryset = players.objects.filter(display=False, played=True)
