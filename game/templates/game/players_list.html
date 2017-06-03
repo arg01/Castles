@@ -2,14 +2,13 @@
 
 {% block content %}
     <h1>Results List</h1>
-
-    {% if players_list %}
+<!--    {% if players_list %}
     <table cellspacing="10">
       <tr>
-        <th>Name</th>
-        <th>Wins</th>
-        <th>Losses</th>
-        <th>Ties</th>
+        <th><a href="?order_by=name">Name</th>
+        <th><a href="?order_by=wins">Wins</th>
+        <th><a href="?order_by=losses">Losses</th>
+        <th><a href="?order_by=ties">Ties</th>
       </tr>
 
       {% for player in players_list %}
@@ -24,5 +23,7 @@
     </table>
     {% else %}
       <p>No games played</p>
-    {% endif %}
+    {% endif %} -->
+    {% load django_tables2 %}
+    {% render_table table %}
 {% endblock %}

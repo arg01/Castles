@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from .models import players
+from .models import *
 from django.views import generic
 from .forms import playersForm
 from django.http import HttpResponseRedirect
+import django_tables2 as tables
 
 def index(request):
     num_plays=players.objects.all().count()
@@ -12,12 +13,19 @@ def index(request):
         'index.html',
     )
 
-class ResultsView(generic.ListView):
-    model = players
+class ResultsView(tables.Table):
+    class Meta:
+        model = players
+
+def players_list(request):
+    queryset = players.objects.filter(display=False, played=True)
+    table = ResultsView(queryset)
+    return render(request, 'game/players_list.html', {'table': table})
 
 def play(request):
     if request.method == "POST":
         form = playersForm(request.POST)
+        print(form)
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
@@ -62,7 +70,8 @@ def run_script(request):
     i=0
     tempKey=None
     keys=[]
-
+    tempPlayKeys=None
+    playKeys=[]
     while i<playerNo:
         n=1
         tempAllocation=[]
@@ -73,6 +82,9 @@ def run_script(request):
             n+=1
         tempName = players.objects.values_list('pk', flat=True).filter(played=False)
         keys.append(tempName[i])
+        tempPlayKeys = players.objects.values_list('pk', flat=True).filter(played=True)
+        print(tempPlayKeys)
+        playKeys.append(tempPlayKeys)
         allocation.append(tempAllocation)
         i+=1
 
@@ -97,7 +109,6 @@ def run_script(request):
                     player.ties+=1
                     player.save()
             n+=1
-        print(loop)
         loop+=1
     playLoop=0
     while playLoop<playerNo:
@@ -105,4 +116,13 @@ def run_script(request):
         player.played=True
         player.save()
         playLoop+=1
+    plays=len(playKeys)
+    print(playKeys)
+    playsLoop=0
+    while playsLoop<plays:
+        player = players.objects.get(pk=playKeys[playsLoop])
+
+        player.display=True
+        player.save()
+        playsLoop+=1
     return HttpResponseRedirect('/game/results')

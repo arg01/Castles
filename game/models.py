@@ -2,8 +2,8 @@ from django.db import models
 from django.urls import reverse
 from django import forms
 from django.core.validators import MaxValueValidator, MinValueValidator
-
-
+import django_tables2 as tables
+from django.core.exceptions import ValidationError
 
 class players(models.Model):
     name= models.CharField(max_length=40, help_text="Enter a name", unique=True)
@@ -25,3 +25,13 @@ class players(models.Model):
 
     def __str__(self):
         return self.name
+
+
+    ##def clean(self):
+    #    total_army = 100
+    #    i=1
+    #    while i <=10:
+    #       allocation=eval('Allocations'+str(i))
+    #       total_army -= allocation
+    #       if total_percentage !=0:
+    ##           raise ValidationError("Army count does not equal 100")
