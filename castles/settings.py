@@ -25,9 +25,10 @@ SECRET_KEY = '-ecq_$$h)1v6ffs-6hw%9nt0b#_#7pwqzzutvjfthc-qnfo(vp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+SERVER_EMAIL = 'exceptions@robinsonm.com'
 ADMINS = (('matt', 'matt@robinsonm.com'),)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.herokuapp.com']
 
 
 # Application definition
