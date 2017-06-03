@@ -4,15 +4,24 @@
     <h1>Results List</h1>
 
     {% if players_list %}
-    <ul>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Wins</th>
+        <th>Losses</th>
+        <th>Ties</th>
+      </tr>
 
       {% for player in players_list %}
-      <li>
-        {{ player.name }} {{player.wins}} {{player.losses}}
-      </li>
+      <tr>
+        <td> {{ player.name }}</td>
+        <td> {{player.wins}} </td>
+        <td> {{player.losses}} </td>
+        <td> {{player.ties}} </td>
+      </tr>
       {% endfor %}
 
-    </ul>
+    </table>
     {% else %}
       <p>No games played</p>
     {% endif %}

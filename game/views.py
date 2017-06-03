@@ -75,7 +75,7 @@ def run_script(request):
         keys.append(tempName[i])
         allocation.append(tempAllocation)
         i+=1
-    
+
 
     loop=0
 
@@ -99,4 +99,10 @@ def run_script(request):
             n+=1
         print(loop)
         loop+=1
+    playLoop=0
+    while playLoop<playerNo:
+        player = players.objects.get(pk=keys[playLoop])
+        player.played=True
+        player.save()
+        playLoop+=1
     return HttpResponseRedirect('/game/results')
