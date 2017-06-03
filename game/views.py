@@ -17,7 +17,6 @@ def index(request):
 class ResultsView(tables.Table):
     class Meta:
         model = players
-        attrs = {"name":"wins":"losses":"ties"}
 
 
 def players_list(request):
