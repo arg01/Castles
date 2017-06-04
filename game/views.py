@@ -10,7 +10,7 @@ logger = logging.getLogger()
 
 def index(request):
     num_plays=players.objects.all().count()
-     logger.error('There was some crazy error lol', exc_info=True, extra={'request': request, })
+    logger.error('There was some crazy error lol', exc_info=True, extra={'request': request, })
     return render(
         request,
         'index.html',
