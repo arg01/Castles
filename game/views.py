@@ -84,9 +84,7 @@ def run_script(request):
             n+=1
         tempName = players.objects.values_list('pk', flat=True).filter(played=False)
         keys.append(tempName[i])
-        tempPlayKeys = players.objects.values_list('pk', flat=True).filter(played=True)
-        print(tempPlayKeys)
-        playKeys.append(tempPlayKeys)
+        playKeys = players.objects.values_list('pk', flat=True).filter(played=True)
         allocation.append(tempAllocation)
         i+=1
 
