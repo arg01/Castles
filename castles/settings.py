@@ -139,6 +139,5 @@ RAVEN_CONFIG = {
     'dsn': 'https://645d76bd72a942bf92715b6b58a6d94d:8475cc00711e4529803c574e5f8582c8@sentry.io/175736',
     # If you are using git, you can also automatically configure the
     # release based on the git info.
-    'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
 }
 client.captureException()
