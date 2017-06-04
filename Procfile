@@ -1,1 +1,1 @@
-web: python manage.py collectstatic --noinputs; gunicorn castles.wsgi --log-file -
+web: python manage.py collectstatic --noinput; gunicorn castles.wsgi --log-file -

@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import dj_database_url
+import raven
+from raven.contrib.django.raven_compat.models import client
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-ecq_$$h)1v6ffs-6hw%9nt0b#_#7pwqzzutvjfthc-qnfo(vp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 ALLOWED_HOSTS = ['.herokuapp.com']
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'game.apps.GameConfig',
     'django_tables2',
+    'raven.contrib.django.raven_compat',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +134,11 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+RAVEN_CONFIG = {
+    'dsn': 'https://645d76bd72a942bf92715b6b58a6d94d:8475cc00711e4529803c574e5f8582c8@sentry.io/175736',
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
+}
+client.captureException()

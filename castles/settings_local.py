@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'game.apps.GameConfig',
     'django_tables2',
+    'raven.contrib.django.raven_compat',
 ]
 
 MIDDLEWARE = [
