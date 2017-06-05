@@ -18,7 +18,7 @@ def fight(player, opponent):
             pScore+=(value/2)
             oScore+=(value/2)
         i+=1
-
+    print(pScore)
     if pScore > oScore:
         return 'Win'
     elif pScore < oScore:
@@ -63,6 +63,7 @@ def playRound():
         while n<playerNo:
             if n!=loop:
                 result = fight(allocation[loop], allocation[n])
+                print(result)
                 if result == 'Win':
                     player = players.objects.get(pk=keys[loop])
                     player.wins+=1
