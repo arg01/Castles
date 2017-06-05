@@ -42,7 +42,7 @@ def playRound():
             temp = players.objects.values_list(varAll, flat=True).filter(played=False)
             tempAllocation.append(temp[i])
             n+=1
-        
+        allocation.append(tempAllocation)
         i+=1
 
     keys = players.objects.values_list('pk', flat=True).filter(played=False)
