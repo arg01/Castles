@@ -32,9 +32,7 @@ def playRound():
     temp =0
     tempAllocation =[]
     i=0
-    tempKey=None
     keys=[]
-    tempPlayKeys=None
     playKeys=[]
     while i<playerNo:
         n=1
@@ -48,8 +46,8 @@ def playRound():
         i+=1
 
     keys = players.objects.values_list('pk', flat=True).filter(played=False)
-    playKeys = players.objects.values_list('pk', flat=True).filter(played=True)
 
+    playKeys = players.objects.values_list('pk', flat=True).filter(played=True)
 
     loop=0
 
